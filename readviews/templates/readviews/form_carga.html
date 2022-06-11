@@ -1,0 +1,73 @@
+{% extends 'readviews/layout.html' %}
+
+{% load bootstrap5 %}
+
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% block content %}
+
+{% if indice_serie %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>CARGAR UNA SERIE</h1>
+      </div>
+      </div>
+      <dov class="row">
+      <div class="col">
+        <form action="/readviews/agregar_serie/" method="post">
+          {% csrf_token %} 
+          {% bootstrap_form form %}
+          {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if indice_pelicula %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>CARGAR UNA PELICULA</h1>
+      </div>
+      </div>
+      <dov class="row">
+      <div class="col">
+        <form action="/readviews/agregar_pelicula/" method="post">
+          {% csrf_token %} 
+          {% bootstrap_form form %}
+          {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% if indice_libro %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>CARGAR UN LIBRO</h1>
+      </div>
+      </div>
+      <dov class="row">
+      <div class="col">
+        <form action="/readviews/agregar_libro/" method="post">
+          {% csrf_token %} 
+          {% bootstrap_form form %}
+          {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+        </form>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

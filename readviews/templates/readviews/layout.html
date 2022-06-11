@@ -1,0 +1,46 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    {% url 'index' as index_url %}
+    {% bootstrap_button "Todos" size="sm" button_class="btn-primary" button_type="link" href=index_url %}
+
+    {% url 'index_peliculas' as index_peliculas_url %}
+    {% bootstrap_button "Peliculas" size="sm" button_class="btn-primary" button_type="link" href=index_peliculas_url %}
+
+    {% url 'buscar_pelicula' as buscar_pelicula_url %}
+    {% bootstrap_button "Buscar pelicula" size="sm" button_class="btn-primary" button_type="link" href=buscar_pelicula_url %}
+   
+    {% url 'index_series' as index_series_url %}
+    {% bootstrap_button "Series" size="sm" button_class="btn-primary" button_type="link" href=index_series_url %}
+   
+    {% url 'buscar_serie' as buscar_serie_url %}
+    {% bootstrap_button "Buscar serie" size="sm" button_class="btn-primary" button_type="link" href=buscar_serie_url %}
+
+    {% url 'index_libros' as index_libros_url %}
+    {% bootstrap_button "Libros" size="sm" button_class="btn-primary" button_type="link" href=index_libros_url %}
+   
+    {% url 'buscar_libro' as buscar_libro_url %}
+    {% bootstrap_button "Buscar libro" size="sm" button_class="btn-primary" button_type="link" href=buscar_libro_url %}
+    
+ 
+</head>
+<body>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+<footer>
+    <h7>Gracias por utilizar ReadViews</h7>
+</foot>
+
+</html>

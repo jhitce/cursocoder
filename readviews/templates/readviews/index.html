@@ -1,0 +1,159 @@
+{% extends 'readviews/layout.html' %}
+
+{% load bootstrap5 %}
+
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% block content %}
+
+{% if indice_serie %}
+
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Series vistas</h1>
+          {% url 'agregar_serie' as agregar_serie_url %}
+          {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=agregar_serie_url %}
+        
+        </div>
+        </div>
+        <dov class="row">
+        <div class="col">
+          {% if series %}
+          <table class="table">
+              <thead>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Comentarios</th>
+                  <th scope="col">Director</th>
+                  <th scope="col">Temporadas</th>
+                  <th scope="col">Plataforma</th>
+                  <th scope="col">Comenzaste a verla el</th>
+                  <th scope="col">Terminas de verla el</th>
+
+              </thead>
+          
+              {% for p in series %}
+              <tbody>
+                  <tr>
+                      <td> {{p.titulo}} </td>
+                      <td> {{p.comentarios}} </td>
+                      <td> {{p.autor}} </td>
+                      <td> {{p.temporadas}} </td>
+                      <td> {{p.plataforma}} </td>
+                      <td> {{p.fecha_inicio}} </td>
+                      <td> {{p.fecha_final}} </td>
+                      {% url 'borrar_serie' identificador=p.id as borrar_serie_url %}
+                      <td>{% bootstrap_button "Borrar" size="sm" button_class="btn-danger" button_type="link" href=borrar_serie_url %}</td>
+                  </tr>  
+              </tbody>
+              {% endfor %}
+          </table>
+          {% else %}
+              <p>No tienes series cargadas</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+{% if indice_pelicula %}
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Peliculas vistas</h1>
+          {% url 'agregar_pelicula' as agregar_pelicula_url %}
+          {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=agregar_pelicula_url %}
+        </div>
+        </div>
+        <dov class="row">
+        <div class="col">
+          {% if peliculas %}
+          <table class="table">
+              <thead>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Comentarios</th>
+                  <th scope="col">Director</th>
+                  <th scope="col">Plataforma</th>
+                  <th scope="col">Genero</th>
+                  <th scope="col">La viste el</th>
+
+
+              </thead>
+          
+              {% for p in peliculas %}
+              <tbody>
+                  <tr>
+                      <td> {{p.titulo}} </td>
+                      <td> {{p.comentarios}} </td>
+                      <td> {{p.autor}} </td>
+                      <td> {{p.plataforma}} </td>
+                      <td> {{p.genero}} </td>
+                      <td> {{p.fecha_inicio}} </td>
+                      {% url 'borrar_pelicula' identificador=p.id as borrar_pelicula_url %}
+                      <td>{% bootstrap_button "Borrar" size="sm" button_class="btn-danger" button_type="link" href=borrar_pelicula_url %}</td>
+                  </tr>  
+              </tbody>
+              {% endfor %}
+          </table>
+          {% else %}
+              <p>No tienes peliculas cargadas</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+{% if indice_libro %}
+
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>Libros leidos</h1>
+          {% url 'agregar_libro' as agregar_libro_url %}
+          {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=agregar_libro_url %}
+
+        </div>
+        </div>
+        <dov class="row">
+        <div class="col">
+          {% if libros %}
+          <table class="table">
+              <thead>
+                  <th scope="col">Titulo</th>
+                  <th scope="col">Comentarios</th>
+                  <th scope="col">Autor</th>
+                  <th scope="col">Genero</th>
+                  <th scope="col">Comenzaste a leerlo el</th>
+                  <th scope="col">Lo terminaste el</th>
+
+              </thead>
+          
+              {% for p in libros %}
+              <tbody>
+                  <tr>
+                      <td> {{p.titulo}} </td>
+                      <td> {{p.comentarios}} </td>
+                      <td> {{p.autor}} </td>
+                      <td> {{p.genero}} </td>
+                      <td> {{p.fecha_inicio}} </td>
+                      <td> {{p.fecha_final}} </td>
+                      {% url 'borrar_libro' identificador=p.id as borrar_libro_url %}
+                      <td>{% bootstrap_button "Borrar" size="sm" button_class="btn-danger" button_type="link" href=borrar_libro_url %}</td>
+                  </tr>  
+              </tbody>
+              {% endfor %}
+          </table>
+          {% else %}
+              <p>No tienes libros cargados</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+{% endblock %}
